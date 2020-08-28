@@ -44,10 +44,24 @@ namespace StartApplications
             // LoadFile class is used to load the setup...
             LoadFile _file = new LoadFile(Settings.FILE);
 
-
-
             // If loader.txt doesnt contains any inserted
             // directory or application, do nothing...
+            if(_file.Applications.Count > 0) {
+
+                /**
+                 * OPEN APPLICATIONS...
+                 */
+                foreach(string _str in _file.Applications) {
+                    Console.WriteLine(_str);
+
+                    // Launch application only...
+                    if(Check.Contains(_str)) {
+                        Process.Start(_str);
+                    }
+                }
+
+            }
+
             if(_file.Directories.Count > 0) {
 
                 /**
@@ -56,27 +70,13 @@ namespace StartApplications
                 foreach(string _str in _file.Directories) {
 
                     // OPEN FOLDERS ONLY...
-                    if(!Check.EndsWith(_str)) {
+                    if(!Check.Contains(_str)) {
                         Process.Start("explorer.exe", _str);
                     }
                 }
             }
 
-            if(_file.Applications.Count > 0) {
-
-                /**
-                 * OPEN APPLICATIONS...
-                 */
-                foreach(string _str in _file.Applications) {
-
-                    // Launch application only...
-                    if(Check.EndsWith(_str)) {
-                        Process.Start(_str);
-                    }
-                }
-
-            }
-
+            Console.ReadLine();
             // If first launch was activate...
             if(_firstLaunch) {
                 Console.Write("\n\n"+

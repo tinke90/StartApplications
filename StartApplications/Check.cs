@@ -11,10 +11,12 @@ namespace StartApplications
         /**
          * CHECK IF EITHER ENDS OR NOT...
          */
-        public static bool EndsWith(string _str)
+        public static bool Contains(string _str)
         {
+
             foreach(string _extension in Extensions.ExtensionList) {
-                if(_str.EndsWith(_extension)) {
+                
+                if(_str.Contains(_extension)) {
                     return true;
                 }
             }
